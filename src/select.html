@@ -6,6 +6,7 @@
   <select sf-field-model
           ng-disabled="form.readonly"
           sf-changed="form"
+          sf-formula="form"
           class="form-control {{form.fieldHtmlClass}}"
           schema-validate="form"
           ng-options="item.value as item.name group by item.group for item in form.titleMap"
