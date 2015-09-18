@@ -18,7 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-schema-form": ">= 0.8.7"
+    "angular-schema-form-saltation": ">= 0.8.9-rc1"
   },
   "devDependencies": {
     "angular-ui-ace": "bower",
