@@ -1,0 +1,6 @@
+<div ng-disabled="form.readonly" class="panel schema-form-fieldset {{form.htmlClass}}">
+  <div class="panel-heading" ng-class="{'sr-only': !showTitle() }">
+    {{ form.title }}
+  </div>
+  <div class="help-block" ng-show="form.description" ng-bind-html="form.description"></div>
+</div>
