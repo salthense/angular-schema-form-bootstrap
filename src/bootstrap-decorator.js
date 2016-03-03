@@ -22,17 +22,61 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
         div.setAttribute('ng-class', '{active: selected.tab === ' + index + '}');
 
         var childFrag = args.build(tab.items, args.path + '.tabs[' + index + '].items', args.state);
+
         div.appendChild(childFrag);
         tabContent.appendChild(div);
+
+        if (tab.jumpToNavigation) {
+          var jumpToNavigation = document.createElement('div');
+          var buttonGroup = document.createElement('div');
+          buttonGroup.setAttribute('class', 'btn-group');
+
+          tab.items.forEach(function(item, count) {
+            var scrollToChild = childFrag.children[count];
+            var jumpLink = document.createElement('button');
+            jumpLink.setAttribute('type', 'button');
+            jumpLink.setAttribute('class', 'btn btn-info');
+            jumpLink.textContent = item.title;
+
+            jumpLink.addEventListener('click', function() {
+              window.scrollTo(scrollToChild.offsetLeft, scrollToChild.offsetTop - tab.jumpToNavigation.offset);
+            });
+
+            buttonGroup.appendChild(jumpLink);
+          });
+
+          jumpToNavigation.appendChild(buttonGroup);
+          div.insertBefore(jumpToNavigation, div.firstChild);
+
+          if (tab.jumpToNavigation.affix) {
+            $(buttonGroup).affix({
+              offset: {
+                top: function() {
+                  return $(buttonGroup).parent().offset().top - tab.jumpToNavigation.offset;
+                }
+              }
+            }).on('affix.bs.affix', function() {
+              jumpToNavigation.style.height = $(jumpToNavigation).height() + 'px';
+            });
+          }
+        }
       });
     }
+  };
+
+  // Tabs is so bootstrap specific that it stays here.
+  var complexTransclusion = function(args) {
+    var children = args.build(args.form.items, args.path + '.items', args.state);
+    var contentElement =
+      args.fieldFrag.firstChild.querySelector('.sf-content') || args.fieldFrag.firstChild;
+    contentElement.appendChild(children);
   };
 
   var defaults = [sfField, ngModel, ngModelOptions, condition];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
     textarea: {template: base + 'textarea.html', builder: defaults},
-    fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion, condition]},
-    panel: {template: base + 'panel.html', builder: [sfField, simpleTransclusion, condition]},
+    fieldset: {template: base + 'fieldset.html', builder: [sfField, complexTransclusion, condition]},
+    panel: {template: base + 'panel.html', builder: [sfField, complexTransclusion, condition]},
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     tabarray: {template: base + 'tabarray.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     tabs: {template: base + 'tabs.html', builder: [sfField, ngModelOptions, tabs, condition]},
