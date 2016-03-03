@@ -23,13 +23,25 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
         var childFrag = args.build(tab.items, args.path + '.tabs[' + index + '].items', args.state);
 
-        div.appendChild(childFrag);
-        tabContent.appendChild(div);
-
         if (tab.jumpToNavigation) {
           var jumpToNavigation = document.createElement('div');
           var buttonGroup = document.createElement('div');
           buttonGroup.setAttribute('class', 'btn-group');
+
+          var topLink = document.createElement('button');
+          topLink.setAttribute('type', 'button');
+          topLink.setAttribute('class', 'btn btn-info');
+
+          var topSpan = document.createElement('span');
+          topSpan.setAttribute('class', 'glyphicon glyphicon-chevron-up');
+
+          topLink.appendChild(topSpan);
+
+          topLink.addEventListener('click', function() {
+            window.scrollTo(0, 0);
+          });
+
+          buttonGroup.appendChild(topLink);
 
           tab.items.forEach(function(item, count) {
             var scrollToChild = childFrag.children[count];
@@ -44,6 +56,21 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
             buttonGroup.appendChild(jumpLink);
           });
+
+          var bottomLink = document.createElement('button');
+          bottomLink.setAttribute('type', 'button');
+          bottomLink.setAttribute('class', 'btn btn-info');
+
+          var bottomSpan = document.createElement('span');
+          bottomSpan.setAttribute('class', 'glyphicon glyphicon-chevron-down');
+
+          bottomLink.appendChild(bottomSpan);
+
+          bottomLink.addEventListener('click', function() {
+            window.scrollTo(0, document.body.offsetHeight);
+          });
+
+          buttonGroup.appendChild(bottomLink);
 
           jumpToNavigation.appendChild(buttonGroup);
           div.insertBefore(jumpToNavigation, div.firstChild);
@@ -60,6 +87,9 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             });
           }
         }
+
+        div.appendChild(childFrag);
+        tabContent.appendChild(div);
       });
     }
   };
