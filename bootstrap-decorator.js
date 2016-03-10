@@ -44,7 +44,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
         if (tab.jumpToNavigation) {
           var jumpToNavigation = document.createElement('div');
           var buttonGroup = document.createElement('div');
-          buttonGroup.setAttribute('class', 'btn-group');
+          buttonGroup.setAttribute('class', 'btn-group affix-btn-group');
 
           var topLink = document.createElement('button');
           topLink.setAttribute('type', 'button');
