@@ -30,7 +30,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
           var topLink = document.createElement('button');
           topLink.setAttribute('type', 'button');
-          topLink.setAttribute('class', 'btn btn-info');
+          topLink.setAttribute('class', 'btn btn-info btn-jump-to');
 
           var topSpan = document.createElement('span');
           topSpan.setAttribute('class', 'glyphicon glyphicon-chevron-up');
@@ -47,7 +47,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             var scrollToChild = childFrag.children[count];
             var jumpLink = document.createElement('button');
             jumpLink.setAttribute('type', 'button');
-            jumpLink.setAttribute('class', 'btn btn-info');
+            jumpLink.setAttribute('class', 'btn btn-info btn-jump-to');
             jumpLink.textContent = item.title;
 
             jumpLink.addEventListener('click', function() {
@@ -59,7 +59,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
           var bottomLink = document.createElement('button');
           bottomLink.setAttribute('type', 'button');
-          bottomLink.setAttribute('class', 'btn btn-info');
+          bottomLink.setAttribute('class', 'btn btn-info btn-jump-to');
 
           var bottomSpan = document.createElement('span');
           bottomSpan.setAttribute('class', 'glyphicon glyphicon-chevron-down');

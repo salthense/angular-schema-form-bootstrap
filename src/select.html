@@ -1,4 +1,5 @@
 <div class="form-group {{form.htmlClass}} schema-form-select"
+     ng-class="{{form.ngClass}}"
      ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess(), 'has-feedback': form.feedback !== false}">
   <label class="control-label {{form.labelHtmlClass}}" ng-show="showTitle()">
     {{form.title}}
