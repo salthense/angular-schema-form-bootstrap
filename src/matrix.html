@@ -1,0 +1,27 @@
+<div  class="schema-form-matrix {{form.htmlClass}}"
+      ng-class="{{form.ngClass}}"
+      sf-field-model="sf-matrix"
+      sf-matrix>
+  <label class="control-label" ng-show="showTitle()">{{ form.title }}</label>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th ng-repeat="column in matrixColumns">
+          {{column}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in matrixRows">
+        <td>{{row}}</td>
+        <td ng-repeat="column in matrixColumns">
+          <input type="checkbox"
+            ng-disabled="form.readonly"
+            ng-model="matrixElements[matrixMap[row][column]].selected"
+            class="{{form.fieldHtmlClass}}">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
