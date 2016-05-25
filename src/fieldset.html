@@ -1,4 +1,4 @@
-<div>
+<div class="{{form.outerClass}}">
   <legend ng-class="{'sr-only': !showTitle() }">{{ form.title }}</legend>
   <fieldset ng-disabled="form.readonly" class="sf-content schema-form-fieldset {{form.htmlClass}}" ng-class="{{form.ngClass}}">
     <div class="help-block" ng-show="form.description" ng-bind-html="form.description"></div>
