@@ -52,7 +52,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             var scrollToChild = childFrag.children[count];
             var jumpLink = document.createElement('button');
             jumpLink.setAttribute('type', 'button');
-            if (item.title.substr(0, 1) != '<') {
+            if (item.title && item.title.substr(0, 1) != '<') {
               jumpLink.setAttribute('class', 'btn btn-info btn-jump-to panel-bike-' + item.title.toLowerCase());
             } else {
               jumpLink.setAttribute('class', 'btn btn-info btn-jump-to');
