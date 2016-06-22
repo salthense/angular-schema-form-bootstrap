@@ -49,7 +49,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
           buttonGroup.appendChild(topLink);
 
           tab.items.forEach(function(item, count) {
-            var scrollToChild = childFrag.children[count];
+            var scrollToChild = childFrag.childNodes[count];
             var jumpLink = document.createElement('button');
             jumpLink.setAttribute('type', 'button');
             if (item.title && item.title.substr(0, 1) != '<') {
