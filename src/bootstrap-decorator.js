@@ -53,7 +53,11 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             var jumpLink = document.createElement('button');
             jumpLink.setAttribute('type', 'button');
             if (item.title && item.title.substr(0, 1) != '<') {
-              jumpLink.setAttribute('class', 'btn btn-info btn-jump-to panel-bike-' + item.title.toLowerCase());
+              var classes = 'btn btn-info btn-jump-to panel-bike-' + item.title.toLowerCase();
+              if (index == 0 && count == 0) {
+                classes = 'active ' +  classes;
+              }
+              jumpLink.setAttribute('class', classes);
             } else {
               jumpLink.setAttribute('class', 'btn btn-info btn-jump-to');
             }
@@ -143,4 +147,30 @@ app.filter('alphaNumeric', function() {
   return function(text) {
     return text.replace(/\W/g, '');
   }
+});
+
+function elementInViewport(element) {
+  var rect = element[0].getBoundingClientRect();
+  return (rect.top > 0 && rect.top < window.innerHeight);
+}
+function markActiveTab() {
+  var found = false;
+  $('.panel-section').each(function(pan) {
+    if (elementInViewport($('.panel-section')[pan]) && !found) {
+      $('.btn-jump-to.active').removeClass('active');
+      var classes = $('.panel-section')[pan].getAttribute('class').split(' ');
+      classes.forEach(function(cl) {
+        if (cl.includes('panel-bike')) {
+          $('button.' + cl).addClass('active');
+          found = true;
+        }
+      });
+    }
+  });
+}
+window.addEventListener('scroll', function() {
+  markActiveTab();
+});
+window.addEventListener('click', function() {
+  markActiveTab();
 });

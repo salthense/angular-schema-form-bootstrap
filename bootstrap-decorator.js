@@ -7,7 +7,7 @@ $templateCache.put("decorators/bootstrap/default.html","<div class=\"form-group 
 $templateCache.put("decorators/bootstrap/fieldset.html","<div class=\"{{form.outerClass}}\"><legend ng-class=\"{\'sr-only\': !showTitle() }\">{{ form.title }}</legend><fieldset ng-disabled=\"form.readonly\" class=\"sf-content schema-form-fieldset {{form.htmlClass}}\" ng-class=\"{{form.ngClass}}\"><div class=\"help-block\" ng-show=\"form.description\" ng-bind-html=\"form.description\"></div></fieldset></div>");
 $templateCache.put("decorators/bootstrap/help.html","<div class=\"helpvalue schema-form-helpvalue {{form.htmlClass}}\" ng-class=\"{{form.ngClass}}\" ng-bind-html=\"form.helpvalue\"></div>");
 $templateCache.put("decorators/bootstrap/matrix.html","<div class=\"schema-form-matrix {{form.htmlClass}}\" ng-class=\"{{form.ngClass}}\" sf-field-model=\"sf-matrix\" sf-matrix=\"\"><label class=\"control-label\" ng-show=\"showTitle()\">{{ form.title }}</label><table class=\"table\"><thead><tr><th></th><th ng-repeat=\"column in matrixColumns\">{{column}}</th></tr></thead><tbody><tr ng-repeat=\"row in matrixRows\" class=\"matrix-row-{{row | alphaNumeric}}\"><td>{{row}}</td><td ng-repeat=\"column in matrixColumns\"><input type=\"checkbox\" ng-disabled=\"form.readonly\" ng-model=\"matrixElements[matrixMap[row][column]].selected\" class=\"{{form.fieldHtmlClass}}\"></td></tr></tbody></table></div>");
-$templateCache.put("decorators/bootstrap/panel.html","<div ng-disabled=\"form.readonly\" class=\"block-{{form.title}} panel schema-form-fieldset {{form.htmlClass}}\" ng-class=\"{{form.ngClass}}\"><div class=\"panel-heading\" ng-class=\"{\'sr-only\': !showTitle() }\">{{ form.title }}</div><div class=\"help-block\" ng-show=\"form.description\" ng-bind-html=\"form.description\"></div><div class=\"sf-content panel-body\"></div></div>");
+$templateCache.put("decorators/bootstrap/panel.html","<div ng-disabled=\"form.readonly\" class=\"block-{{form.title}} panel schema-form-fieldset {{form.htmlClass}} panel-section\" ng-class=\"{{form.ngClass}}\"><div class=\"panel-heading\" ng-class=\"{\'sr-only\': !showTitle() }\">{{ form.title }}</div><div class=\"help-block\" ng-show=\"form.description\" ng-bind-html=\"form.description\"></div><div class=\"sf-content panel-body\"></div></div>");
 $templateCache.put("decorators/bootstrap/radio-buttons.html","<div class=\"form-group schema-form-radiobuttons {{form.htmlClass}}\" ng-class=\"{\'has-error\': form.disableErrorState !== true && hasError(), \'has-success\': form.disableSuccessState !== true && hasSuccess()}\"><div><label class=\"control-label {{form.labelHtmlClass}}\" ng-show=\"showTitle()\">{{form.title}}</label></div><div class=\"btn-group\"><label sf-field-model=\"replaceAll\" class=\"btn {{ (item.value === $$value$$) ? form.style.selected || \'btn-default\' : form.style.unselected || \'btn-default\'; }}\" ng-class=\"{ active: item.value === $$value$$ }\" ng-repeat=\"item in form.titleMap\"><input type=\"radio\" class=\"{{form.fieldHtmlClass}}\" sf-changed=\"form\" style=\"display: none;\" ng-disabled=\"form.readonly\" sf-field-model=\"\" schema-validate=\"form\" ng-value=\"item.value\" name=\"{{form.key.join(\'.\')}}\"> <span ng-bind-html=\"item.name\"></span></label></div><div class=\"help-block\" sf-message=\"form.description\"></div></div>");
 $templateCache.put("decorators/bootstrap/radios-inline.html","<div class=\"form-group schema-form-radios-inline {{form.htmlClass}}\" ng-class=\"{{form.ngClass}}\"><label class=\"control-label {{form.labelHtmlClass}}\" ng-show=\"showTitle()\" sf-field-model=\"\" schema-validate=\"form\">{{form.title}}</label><div><label class=\"radio-inline\" ng-repeat=\"item in form.titleMap\"><input type=\"radio\" class=\"{{form.fieldHtmlClass}}\" sf-changed=\"form\" ng-disabled=\"form.readonly\" sf-field-model=\"\" ng-value=\"item.value\" name=\"{{form.key.join(\'.\')}}\"> <span ng-bind-html=\"item.name\"></span></label></div><div class=\"help-block\" sf-message=\"form.description\"></div></div>");
 $templateCache.put("decorators/bootstrap/radios.html","<div class=\"form-group schema-form-radios {{form.htmlClass}}\" ng-class=\"{{form.ngClass}}\"><label class=\"control-label {{form.labelHtmlClass}}\" sf-field-model=\"\" schema-validate=\"form\" ng-show=\"showTitle()\">{{form.title}}</label><div class=\"radio\" ng-repeat=\"item in form.titleMap\"><label><input type=\"radio\" class=\"{{form.fieldHtmlClass}}\" sf-changed=\"form\" ng-disabled=\"form.readonly\" sf-field-model=\"\" ng-value=\"item.value\" name=\"{{form.key.join(\'.\')}}\"> <span ng-bind-html=\"item.name\"></span></label></div><div class=\"help-block\" sf-message=\"form.description\"></div></div>");
@@ -72,7 +72,11 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             var jumpLink = document.createElement('button');
             jumpLink.setAttribute('type', 'button');
             if (item.title && item.title.substr(0, 1) != '<') {
-              jumpLink.setAttribute('class', 'btn btn-info btn-jump-to panel-bike-' + item.title.toLowerCase());
+              var classes = 'btn btn-info btn-jump-to panel-bike-' + item.title.toLowerCase();
+              if (index == 0 && count == 0) {
+                classes = 'active ' +  classes;
+              }
+              jumpLink.setAttribute('class', classes);
             } else {
               jumpLink.setAttribute('class', 'btn btn-info btn-jump-to');
             }
@@ -162,4 +166,30 @@ app.filter('alphaNumeric', function() {
   return function(text) {
     return text.replace(/\W/g, '');
   }
+});
+
+function elementInViewport(element) {
+  var rect = element[0].getBoundingClientRect();
+  return (rect.top > 0 && rect.top < window.innerHeight);
+}
+function markActiveTab() {
+  var found = false;
+  $('.panel-section').each(function(pan) {
+    if (elementInViewport($('.panel-section')[pan]) && !found) {
+      $('.btn-jump-to.active').removeClass('active');
+      var classes = $('.panel-section')[pan].getAttribute('class').split(' ');
+      classes.forEach(function(cl) {
+        if (cl.includes('panel-bike')) {
+          $('button.' + cl).addClass('active');
+          found = true;
+        }
+      });
+    }
+  });
+}
+window.addEventListener('scroll', function() {
+  markActiveTab();
+});
+window.addEventListener('click', function() {
+  markActiveTab();
 });
