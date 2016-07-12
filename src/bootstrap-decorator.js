@@ -150,7 +150,7 @@ app.filter('alphaNumeric', function() {
 });
 
 function elementInViewport(element) {
-  var rect = element[0].getBoundingClientRect();
+  var rect = element.getBoundingClientRect();
   return (rect.top > 0 && rect.top < window.innerHeight);
 }
 function markActiveTab() {
