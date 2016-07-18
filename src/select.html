@@ -12,5 +12,10 @@
           ng-options="item.value as item.name group by item.group for item in form.titleMap"
           name="{{form.key.slice(-1)[0]}}">
   </select>
+  <span ng-if="form.feedback !== false"
+        class="form-control-feedback"
+        ng-class="evalInScope(form.feedback) || {'glyphicon': true, 'glyphicon-warning-sign': hasWarning() }"
+        aria-hidden="true"></span>
+
   <div class="help-block" sf-message="form.description"></div>
 </div>
