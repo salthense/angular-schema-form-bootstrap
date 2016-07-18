@@ -179,7 +179,7 @@ function markActiveTab() {
       $('.btn-jump-to.active').removeClass('active');
       var classes = $('.panel-section')[pan].getAttribute('class').split(' ');
       classes.forEach(function(cl) {
-        if (cl.includes('panel-bike')) {
+        if (cl.indexOf('panel-bike') >= 0) {
           $('button.' + cl).addClass('active');
           found = true;
         }
