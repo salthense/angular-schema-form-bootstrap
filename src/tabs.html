@@ -3,7 +3,7 @@
     <li ng-repeat="tab in form.tabs"
         ng-disabled="form.readonly"
         ng-click="$event.preventDefault() || (selected.tab = $index)"
-        class="panel-bike-{{tab.title.toLowerCase()}}"
+        class="panel-{{schema.title.toLowerCase()}}-{{tab.title.toLowerCase()}}"
         ng-class="{active: selected.tab === $index}">
         <a href="#">{{ tab.title }}</a>
     </li>
