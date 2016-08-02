@@ -12,6 +12,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var array               = sfBuilderProvider.builders.array;
   var attributes          = sfBuilderProvider.builders.attributes;
   var typeahead           = sfBuilderProvider.builders.typeahead;
+  var measurement         = sfBuilderProvider.builders.measurement;
   var addon               = sfBuilderProvider.builders.addon;
 
   // Tabs is so bootstrap specific that it stays here.
@@ -134,6 +135,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     checkbox: {template: base + 'checkbox.html', builder: defaults},
     checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     number: {template: base + 'default.html', builder: defaults},
+    measurement: {template: base + 'measurement.html', builder: [sfField, ngModel, ngModelOptions, condition, attributes, typeahead, addon, measurement]},
     password: {template: base + 'default.html', builder: defaults},
     submit: {template: base + 'submit.html', builder: defaults},
     button: {template: base + 'submit.html', builder: defaults},
@@ -177,3 +179,51 @@ window.addEventListener('scroll', function() {
 window.addEventListener('click', function() {
   markActiveTab();
 });
+
+app.filter('range', function() {
+  return function (input, total) {
+    total = parseInt(total);
+
+    for (var i = 0; i < total; i++) {
+      input.push(i);
+    }
+
+    return input;
+  };
+});
+
+app.directive('measurements', ['$compile', function($compile) {
+  return {
+    controller: ['$scope', '$rootScope', function($scope, $rootScope) {
+      $scope.calculateValue = function (form) {
+        window.measurementFunctions[form.measurementOptions.function]($scope, function(value) {
+          // Saving the value should be done here since it's specific to ASF
+          var model = $scope.model;
+          var pointer;
+          form.key.forEach(function(value) {
+            // ascending down the object path
+            if (typeof model[value] === 'object') {
+              model = model[value];
+            } else {
+              // desired model-attribute found (last key)
+              if (form.key.length == form.key.indexOf(value) + 1) {
+                pointer = value;
+              } else {
+                // create objectpath to the desired model-attribute
+                model[value] = {};
+                model = model[value];
+              }
+            }
+          });
+          model[pointer] = value;
+        });
+      };
+
+      $scope.reset = function(form) {
+        $scope.measurements = [];
+        $('#measurementContainer' + form.key.slice(-1)[0] + ' input')[0].focus();
+        $scope.calculateValue(form);
+      };
+    }]
+  };
+}]);

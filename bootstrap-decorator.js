@@ -8,6 +8,7 @@ $templateCache.put("decorators/bootstrap/exmodule.html","<div sf-field-model=\"s
 $templateCache.put("decorators/bootstrap/fieldset.html","<div class=\"decorator-fieldset {{form.outerClass}}\"><legend ng-class=\"{\'sr-only\': !showTitle() }\">{{ form.title }}</legend><fieldset ng-disabled=\"form.readonly\" class=\"sf-content schema-form-fieldset {{form.htmlClass}}\" ng-class=\"{{form.ngClass}}\"><div class=\"help-block\" ng-show=\"form.description\" ng-bind-html=\"form.description\"></div></fieldset></div>");
 $templateCache.put("decorators/bootstrap/help.html","<div class=\"helpvalue schema-form-helpvalue {{form.htmlClass}}\" ng-class=\"{{form.ngClass}}\" ng-bind-html=\"form.helpvalue\"></div>");
 $templateCache.put("decorators/bootstrap/matrix.html","<div class=\"schema-form-matrix {{form.htmlClass}}\" ng-class=\"{{form.ngClass}}\" sf-field-model=\"sf-matrix\" sf-matrix=\"\"><label class=\"control-label\" ng-show=\"showTitle()\">{{ form.title }}</label><table class=\"table\"><thead><tr><th></th><th ng-repeat=\"column in matrixColumns\">{{column}}</th></tr></thead><tbody><tr ng-repeat=\"row in matrixRows track by $index\" ng-class=\"rowClass($index)\" ng-show=\"activeGroup === -1 || activeGroup === getGroupForRow($index).group\" class=\"matrix-row-{{row | alphaNumeric}}\"><td>{{row}}</td><td ng-repeat=\"column in matrixColumns\"><input type=\"checkbox\" ng-disabled=\"form.readonly\" ng-model=\"matrixElements[matrixMap[row][column]].selected\" ng-change=\"setGroupState($parent.$index, matrixElements[matrixMap[row][column]].selected)\" class=\"{{form.fieldHtmlClass}}\"></td></tr></tbody></table></div>");
+$templateCache.put("decorators/bootstrap/measurement.html","<div class=\"form-group schema-form-{{form.type}} {{form.htmlClass}}\" ng-class=\"{\'has-error\': form.disableErrorState !== true && hasError(), \'has-success\': form.disableSuccessState !== true && hasSuccess(), \'has-feedback\': form.feedback !== false}\"><label class=\"control-label {{form.labelHtmlClass}}\" ng-class=\"{\'sr-only\': !showTitle()}\" for=\"{{form.key.slice(-1)[0]}}\">{{form.title}}</label> <button class=\"btn btn-default\" type=\"button\" data-toggle=\"modal\" data-target=\"#measurementModal{{form.key.slice(-1)[0]}}\">{{::form.i18n.insertDataBtn || \'insert data\'}}</button> <input ng-show=\"form.key\" type=\"number\" step=\"any\" sf-changed=\"form\" placeholder=\"{{form.placeholder}}\" class=\"form-control {{form.fieldHtmlClass}}\" id=\"{{form.key.slice(-1)[0]}}\" sf-field-model=\"\" ng-disabled=\"true\" measurements=\"\" schema-validate=\"form\" name=\"{{form.key.slice(-1)[0]}}\" aria-describedby=\"{{form.key.slice(-1)[0] + \'Status\'}}\"> <span ng-if=\"form.feedback !== false\" class=\"form-control-feedback\" ng-class=\"evalInScope(form.feedback) || {\'glyphicon\': true, \'glyphicon-ok\': hasSuccess(), \'glyphicon-remove\': hasError(), \'glyphicon-warning-sign\': hasWarning() }\" aria-hidden=\"true\"></span> <span ng-if=\"hasError() || hasSuccess()\" id=\"{{form.key.slice(-1)[0] + \'Status\'}}\" class=\"sr-only\">{{ hasSuccess() ? \'(success)\' : \'(error)\' }}</span><div class=\"help-block\" sf-message=\"form.description\"></div><div id=\"measurementModal{{form.key.slice(-1)[0]}}\" class=\"modal fade\" tabindex=\"-1\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><div class=\"modal-title\">{{::form.i18n.modalTitle || \'please insert data for\'}}: {{form.title}}</div></div><div class=\"modal-body\"><div class=\"row\"><div id=\"measurementContainer{{form.key.slice(-1)[0]}}\"><div ng-repeat=\"i in [] | range: form.measurementOptions.fields\" class=\"col-md-6\"><input class=\"form-control\" type=\"text\" ng-model=\"$parent.measurements[i]\" ng-change=\"calculateValue(form)\"></div></div></div></div><div class=\"modal-footer\"><button id=\"resetBtn{{form.key.slice(-1)[0]}}\" class=\"btn btn-default\" type=\"button\" ng-click=\"reset(form)\">{{::form.i18n.resetDataBtn || \'reset\'}}</button></div></div></div></div></div>");
 $templateCache.put("decorators/bootstrap/panel.html","<div ng-disabled=\"form.readonly\" class=\"block-{{form.title}} panel schema-form-fieldset {{form.htmlClass}} panel-section\" ng-class=\"{{form.ngClass}}\"><div class=\"panel-heading\" ng-class=\"{\'sr-only\': !showTitle() }\">{{ form.title }}</div><div class=\"help-block\" ng-show=\"form.description\" ng-bind-html=\"form.description\"></div><div class=\"sf-content panel-body\"></div></div>");
 $templateCache.put("decorators/bootstrap/radio-buttons.html","<div class=\"form-group schema-form-radiobuttons {{form.htmlClass}}\" ng-class=\"{\'has-error\': form.disableErrorState !== true && hasError(), \'has-success\': form.disableSuccessState !== true && hasSuccess()}\"><div><label class=\"control-label {{form.labelHtmlClass}}\" ng-show=\"showTitle()\">{{form.title}}</label></div><div class=\"btn-group\"><label sf-field-model=\"replaceAll\" class=\"btn {{ (item.value === $$value$$) ? form.style.selected || \'btn-default\' : form.style.unselected || \'btn-default\'; }}\" ng-class=\"{ active: item.value === $$value$$ }\" ng-repeat=\"item in form.titleMap\"><input type=\"radio\" class=\"{{form.fieldHtmlClass}}\" sf-changed=\"form\" style=\"display: none;\" ng-disabled=\"form.readonly\" sf-field-model=\"\" schema-validate=\"form\" ng-value=\"item.value\" name=\"{{form.key.join(\'.\')}}\"> <span ng-bind-html=\"item.name\"></span></label></div><div class=\"help-block\" sf-message=\"form.description\"></div></div>");
 $templateCache.put("decorators/bootstrap/radios-inline.html","<div class=\"form-group schema-form-radios-inline {{form.htmlClass}}\" ng-class=\"{{form.ngClass}}\"><label class=\"control-label {{form.labelHtmlClass}}\" ng-show=\"showTitle()\" sf-field-model=\"\" schema-validate=\"form\">{{form.title}}</label><div><label class=\"radio-inline\" ng-repeat=\"item in form.titleMap\"><input type=\"radio\" class=\"{{form.fieldHtmlClass}}\" sf-changed=\"form\" ng-disabled=\"form.readonly\" sf-field-model=\"\" ng-value=\"item.value\" name=\"{{form.key.join(\'.\')}}\"> <span ng-bind-html=\"item.name\"></span></label></div><div class=\"help-block\" sf-message=\"form.description\"></div></div>");
@@ -32,6 +33,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var array               = sfBuilderProvider.builders.array;
   var attributes          = sfBuilderProvider.builders.attributes;
   var typeahead           = sfBuilderProvider.builders.typeahead;
+  var measurement         = sfBuilderProvider.builders.measurement;
   var addon               = sfBuilderProvider.builders.addon;
 
   // Tabs is so bootstrap specific that it stays here.
@@ -154,6 +156,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     checkbox: {template: base + 'checkbox.html', builder: defaults},
     checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     number: {template: base + 'default.html', builder: defaults},
+    measurement: {template: base + 'measurement.html', builder: [sfField, ngModel, ngModelOptions, condition, attributes, typeahead, addon, measurement]},
     password: {template: base + 'default.html', builder: defaults},
     submit: {template: base + 'submit.html', builder: defaults},
     button: {template: base + 'submit.html', builder: defaults},
@@ -197,3 +200,51 @@ window.addEventListener('scroll', function() {
 window.addEventListener('click', function() {
   markActiveTab();
 });
+
+app.filter('range', function() {
+  return function (input, total) {
+    total = parseInt(total);
+
+    for (var i = 0; i < total; i++) {
+      input.push(i);
+    }
+
+    return input;
+  };
+});
+
+app.directive('measurements', ['$compile', function($compile) {
+  return {
+    controller: ['$scope', '$rootScope', function($scope, $rootScope) {
+      $scope.calculateValue = function (form) {
+        window.measurementFunctions[form.measurementOptions.function]($scope, function(value) {
+          // Saving the value should be done here since it's specific to ASF
+          var model = $scope.model;
+          var pointer;
+          form.key.forEach(function(value) {
+            // ascending down the object path
+            if (typeof model[value] === 'object') {
+              model = model[value];
+            } else {
+              // desired model-attribute found (last key)
+              if (form.key.length == form.key.indexOf(value) + 1) {
+                pointer = value;
+              } else {
+                // create objectpath to the desired model-attribute
+                model[value] = {};
+                model = model[value];
+              }
+            }
+          });
+          model[pointer] = value;
+        });
+      };
+
+      $scope.reset = function(form) {
+        $scope.measurements = [];
+        $('#measurementContainer' + form.key.slice(-1)[0] + ' input')[0].focus();
+        $scope.calculateValue(form);
+      };
+    }]
+  };
+}]);
