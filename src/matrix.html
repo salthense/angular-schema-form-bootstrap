@@ -13,12 +13,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="row in matrixRows" class="matrix-row-{{row | alphaNumeric}}">
+      <tr ng-repeat="row in matrixRows track by $index"
+        ng-class="rowClass()"
+        ng-show="activeGroup === -1 || activeGroup === getGroupForRow($index).group"
+        class="matrix-row-{{row | alphaNumeric}}">
+
         <td>{{row}}</td>
         <td ng-repeat="column in matrixColumns">
           <input type="checkbox"
             ng-disabled="form.readonly"
             ng-model="matrixElements[matrixMap[row][column]].selected"
+            ng-change="setGroupState($parent.$index, matrixElements[matrixMap[row][column]].selected)"
             class="{{form.fieldHtmlClass}}">
         </td>
       </tr>
