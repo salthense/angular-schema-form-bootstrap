@@ -12,6 +12,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var array               = sfBuilderProvider.builders.array;
   var attributes          = sfBuilderProvider.builders.attributes;
   var typeahead           = sfBuilderProvider.builders.typeahead;
+  var measurement         = sfBuilderProvider.builders.measurement;
   var addon               = sfBuilderProvider.builders.addon;
 
   // Tabs is so bootstrap specific that it stays here.
@@ -134,6 +135,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     checkbox: {template: base + 'checkbox.html', builder: defaults},
     checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     number: {template: base + 'default.html', builder: defaults},
+    measurement: {template: base + 'measurement.html', builder: [sfField, ngModel, ngModelOptions, condition, attributes, typeahead, addon, measurement]},
     password: {template: base + 'default.html', builder: defaults},
     submit: {template: base + 'submit.html', builder: defaults},
     button: {template: base + 'submit.html', builder: defaults},
@@ -176,4 +178,16 @@ window.addEventListener('scroll', function() {
 });
 window.addEventListener('click', function() {
   markActiveTab();
+});
+
+app.filter('range', function() {
+  return function (input, total) {
+    total = parseInt(total);
+
+    for (var i = 0; i < total; i++) {
+      input.push(i);
+    }
+
+    return input;
+  };
 });
