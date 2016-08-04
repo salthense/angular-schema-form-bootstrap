@@ -77,7 +77,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             jumpLink.setAttribute('type', 'button');
             if (item.title && item.title.substr(0, 1) != '<') {
               var classes = 'btn btn-info btn-jump-to panel-' +
-                $('.list-group-item-info.active')[0].innerHTML.toLowerCase() +
+                $('.list-group-item-info.active')[0].innerHTML.trim(' ').toLowerCase() +
                 '-' + item.title.toLowerCase();
               if (index == 0 && count == 0) {
                 classes = 'active ' +  classes;
@@ -187,7 +187,7 @@ function markActiveTab() {
       $('.btn-jump-to.active').removeClass('active');
       var classes = $('.panel-section')[pan].getAttribute('class').split(' ');
       classes.forEach(function(cl) {
-        if (cl.indexOf('panel-' + $('.list-group-item-info.active')[0].innerHTML.toLowerCase()) >= 0) {
+        if (cl.indexOf('panel-' + $('.list-group-item-info.active')[0].innerHTML.trim(' ').toLowerCase()) >= 0) {
           $('button.' + cl).addClass('active');
           found = true;
         }
