@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="row in matrixRows track by $index"
-        ng-class="rowClass()"
+        ng-class="rowClass($index)"
         ng-show="activeGroup === -1 || activeGroup === getGroupForRow($index).group"
         class="matrix-row-{{row | alphaNumeric}}">
 
