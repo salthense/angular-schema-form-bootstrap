@@ -30,6 +30,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
         var childFrag = args.build(tab.items, args.path + '.tabs[' + index + '].items', args.state);
 
         if (tab.jumpToNavigation) {
+          $(tabContent).addClass('contains-jump-to-navigation');
           var jumpToNavigation = document.createElement('div');
           var buttonGroup = document.createElement('div');
           buttonGroup.setAttribute('class', 'btn-group affix-btn-group');
