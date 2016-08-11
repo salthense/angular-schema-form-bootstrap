@@ -15,11 +15,15 @@
     <tbody>
       <tr ng-repeat="row in matrixRows track by $index"
         ng-class="rowClass($index)"
-        ng-show="activeGroup === -1 || activeGroup === getGroupForRow($index).group"
         class="matrix-row-{{row | alphaNumeric}}">
-
-        <td>{{row}}</td>
-        <td ng-repeat="column in matrixColumns">
+        <td colspan="{{1 + matrixColumns.length}}" ng-show="!activeGroups[getGroupForRow($index).group - 1] && isFirstInGroup($index)">
+          <button type="button" name="button" ng-click="activeGroups[getGroupForRow($index).group - 1] = true">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td ng-show="activeGroups[getGroupForRow($index).group - 1]">{{row}}</td>
+        <td ng-show="activeGroups[getGroupForRow($parent.$index).group - 1]"
+          ng-repeat="column in matrixColumns">
           <input type="checkbox"
             ng-disabled="form.readonly"
             ng-model="matrixElements[matrixMap[row][column]].selected"
