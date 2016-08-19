@@ -126,6 +126,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     panel: {template: base + 'panel.html', builder: [sfField, complexTransclusion, condition]},
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     matrix: {template: base + 'matrix.html', builder: [sfField, ngModelOptions, ngModel, condition]},
+    relation: {template: base + 'relation.html', builder: [sfField, ngModelOptions, ngModel, condition]},
     exmodule: {template: base + 'exmodule.html', builder: [sfField, ngModelOptions, ngModel, condition]},
     tabarray: {template: base + 'tabarray.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     tabs: {template: base + 'tabs.html', builder: [sfField, ngModelOptions, tabs, condition]},

@@ -1,0 +1,10 @@
+<div  class="schema-form-relation {{form.outerClass}}"
+      ng-class="{{form.ngClass}}"
+      sf-field-model="sf-relation"
+      sf-relation>
+    <div class="{{form.htmlClass}}" ng-repeat="record in records">
+      <div ng-click="editRecord(record)" ng-include="'types/' + recordTitle + '/recordRepresentation.html'"
+        class="{{form.innerClass}}">
+      </div>
+    </div>
+</div>
