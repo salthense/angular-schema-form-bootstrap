@@ -12,6 +12,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var array               = sfBuilderProvider.builders.array;
   var attributes          = sfBuilderProvider.builders.attributes;
   var typeahead           = sfBuilderProvider.builders.typeahead;
+  var link                = sfBuilderProvider.builders.link;
   var measurement         = sfBuilderProvider.builders.measurement;
   var addon               = sfBuilderProvider.builders.addon;
 
@@ -127,6 +128,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     matrix: {template: base + 'matrix.html', builder: [sfField, ngModelOptions, ngModel, condition]},
     relation: {template: base + 'relation.html', builder: [sfField, ngModelOptions, ngModel, condition]},
+    link: {template: base + 'link.html', builder: [sfField, ngModelOptions, ngModel, condition, link]},
     exmodule: {template: base + 'exmodule.html', builder: [sfField, ngModelOptions, ngModel, condition]},
     tabarray: {template: base + 'tabarray.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     tabs: {template: base + 'tabs.html', builder: [sfField, ngModelOptions, tabs, condition]},
