@@ -2,6 +2,7 @@
       ng-class="{{form.ngClass}}"
       sf-field-model="sf-relation"
       sf-relation>
+    <label class="control-label" ng-show="showTitle()">{{ form.title }}</label>
     <div class="{{form.htmlClass}}" ng-repeat="record in records">
       <div ng-click="editRecord(record)" ng-include="'types/' + recordTitle + '/recordRepresentation.html'"
         class="{{form.innerClass}}">
