@@ -61,21 +61,6 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
           var buttonGroup = document.createElement('div');
           buttonGroup.setAttribute('class', 'btn-group affix-btn-group');
 
-          var topLink = document.createElement('button');
-          topLink.setAttribute('type', 'button');
-          topLink.setAttribute('class', 'btn btn-info btn-jump-to');
-
-          var topSpan = document.createElement('span');
-          topSpan.setAttribute('class', 'glyphicon glyphicon-chevron-up');
-
-          topLink.appendChild(topSpan);
-
-          topLink.addEventListener('click', function() {
-            window.scrollTo(0, 0);
-          });
-
-          buttonGroup.appendChild(topLink);
-
           tab.items.forEach(function(item, count) {
             var scrollToChild = childFrag.childNodes[count];
             var jumpLink = document.createElement('button');
@@ -99,6 +84,21 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
             buttonGroup.appendChild(jumpLink);
           });
+
+          var topLink = document.createElement('button');
+          topLink.setAttribute('type', 'button');
+          topLink.setAttribute('class', 'btn btn-info btn-jump-to');
+
+          var topSpan = document.createElement('span');
+          topSpan.setAttribute('class', 'glyphicon glyphicon-chevron-up');
+
+          topLink.appendChild(topSpan);
+
+          topLink.addEventListener('click', function() {
+            window.scrollTo(0, 0);
+          });
+
+          buttonGroup.appendChild(topLink);
 
           var bottomLink = document.createElement('button');
           bottomLink.setAttribute('type', 'button');
