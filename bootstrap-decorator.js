@@ -66,7 +66,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             var jumpLink = document.createElement('button');
             jumpLink.setAttribute('type', 'button');
             if (item.title && item.title.substr(0, 1) != '<') {
-              var classes = 'btn btn-info btn-jump-to panel-' +
+              var classes = 'btn btn-info btn-jump-to jump-to-panel-' + count + ' panel-' +
                 $('.list-group-item-info .active')[0].innerHTML.trim().toLowerCase() +
                 '-' + item.title.toLowerCase();
               if (index == 0 && count == 0) {
@@ -74,7 +74,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
               }
               jumpLink.setAttribute('class', classes);
             } else {
-              jumpLink.setAttribute('class', 'btn btn-info btn-jump-to');
+              jumpLink.setAttribute('class', 'btn btn-info btn-jump-to jump-to-panel-' + count);
             }
             jumpLink.textContent = item.title;
 
