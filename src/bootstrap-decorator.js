@@ -108,7 +108,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
                 }
               }
             }).on('affix.bs.affix', function() {
-              jumpToNavigation.style.height = $(jumpToNavigation).height() + 'px';
+              jumpToNavigation.style.height = $(jumpToNavigation).outerHeight() + 'px';
             });
           }
         }
