@@ -43,8 +43,8 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             jumpLink.setAttribute('type', 'button');
             if (item.title && item.title.substr(0, 1) != '<') {
               var classes = 'btn btn-info btn-jump-to jump-to-panel-' + count + ' panel-' +
-                $('.list-group-item-info .active')[0].innerHTML.trim().toLowerCase() +
-                '-' + item.title.toLowerCase();
+                $('.list-group-item-info .active')[0].innerHTML.trim().toLowerCase().replace(/\W+/g, '-') +
+                '-' + item.title.toLowerCase().replace(/\W+/g, '-');
               if (index == 0 && count == 0) {
                 classes = 'active ' +  classes;
               }
