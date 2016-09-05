@@ -82,7 +82,9 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
               window.scrollTo(scrollToChild.offsetLeft, scrollToChild.offsetTop - tab.jumpToNavigation.offset);
             });
 
-            buttonGroup.appendChild(jumpLink);
+            var jumpLinkWrapper = document.createElement('span');
+            jumpLinkWrapper.appendChild(jumpLink)
+            buttonGroup.appendChild(jumpLinkWrapper);
           });
 
           var topLink = document.createElement('button');
@@ -98,7 +100,9 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             window.scrollTo(0, 0);
           });
 
-          buttonGroup.appendChild(topLink);
+          var topLinkWrapper = document.createElement('span');
+          topLinkWrapper.appendChild(topLink)
+          buttonGroup.appendChild(topLinkWrapper);
 
           var bottomLink = document.createElement('button');
           bottomLink.setAttribute('type', 'button');
@@ -113,7 +117,9 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             window.scrollTo(0, document.body.offsetHeight);
           });
 
-          buttonGroup.appendChild(bottomLink);
+          var bottomLinkWrapper = document.createElement('span');
+          bottomLinkWrapper.appendChild(bottomLink)
+          buttonGroup.appendChild(bottomLinkWrapper);
 
           jumpToNavigation.appendChild(buttonGroup);
           div.insertBefore(jumpToNavigation, div.firstChild);
