@@ -65,7 +65,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
           var topLink = document.createElement('button');
           topLink.setAttribute('type', 'button');
-          topLink.setAttribute('class', 'btn btn-info btn-jump-to');
+          topLink.setAttribute('class', 'btn btn-info btn-jump-to btn-jump-to-top');
 
           var topSpan = document.createElement('span');
           topSpan.setAttribute('class', 'glyphicon glyphicon-chevron-up');
@@ -82,7 +82,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
           var bottomLink = document.createElement('button');
           bottomLink.setAttribute('type', 'button');
-          bottomLink.setAttribute('class', 'btn btn-info btn-jump-to');
+          bottomLink.setAttribute('class', 'btn btn-info btn-jump-to btn-jump-to-bottom');
 
           var bottomSpan = document.createElement('span');
           bottomSpan.setAttribute('class', 'glyphicon glyphicon-chevron-down');
