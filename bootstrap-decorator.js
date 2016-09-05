@@ -61,32 +61,6 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
           var buttonGroup = document.createElement('div');
           buttonGroup.setAttribute('class', 'btn-group affix-btn-group');
 
-          tab.items.forEach(function(item, count) {
-            var scrollToChild = childFrag.childNodes[count];
-            var jumpLink = document.createElement('button');
-            jumpLink.setAttribute('type', 'button');
-            if (item.title && item.title.substr(0, 1) != '<') {
-              var classes = 'btn btn-info btn-jump-to jump-to-panel-' + count + ' panel-' +
-                $('.list-group-item-info .active')[0].innerHTML.trim().toLowerCase().replace(/\W+/g, '-') +
-                '-' + item.title.toLowerCase().replace(/\W+/g, '-');
-              if (index == 0 && count == 0) {
-                classes = 'active ' +  classes;
-              }
-              jumpLink.setAttribute('class', classes);
-            } else {
-              jumpLink.setAttribute('class', 'btn btn-info btn-jump-to jump-to-panel-' + count);
-            }
-            jumpLink.textContent = item.title;
-
-            jumpLink.addEventListener('click', function() {
-              window.scrollTo(scrollToChild.offsetLeft, scrollToChild.offsetTop - tab.jumpToNavigation.offset);
-            });
-
-            var jumpLinkWrapper = document.createElement('span');
-            jumpLinkWrapper.appendChild(jumpLink)
-            buttonGroup.appendChild(jumpLinkWrapper);
-          });
-
           var topLink = document.createElement('button');
           topLink.setAttribute('type', 'button');
           topLink.setAttribute('class', 'btn btn-info btn-jump-to btn-jump-to-top');
@@ -120,6 +94,32 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
           var bottomLinkWrapper = document.createElement('span');
           bottomLinkWrapper.appendChild(bottomLink)
           buttonGroup.appendChild(bottomLinkWrapper);
+
+          tab.items.forEach(function(item, count) {
+            var scrollToChild = childFrag.childNodes[count];
+            var jumpLink = document.createElement('button');
+            jumpLink.setAttribute('type', 'button');
+            if (item.title && item.title.substr(0, 1) != '<') {
+              var classes = 'btn btn-info btn-jump-to panel-' +
+                $('.list-group-item-info .active')[0].innerHTML.trim().toLowerCase().replace(/\W+/g, '-') +
+                '-' + item.title.toLowerCase().replace(/\W+/g, '-');
+              if (index == 0 && count == 0) {
+                classes = 'active ' +  classes;
+              }
+              jumpLink.setAttribute('class', classes);
+            } else {
+              jumpLink.setAttribute('class', 'btn btn-info btn-jump-to');
+            }
+            jumpLink.textContent = item.title;
+
+            jumpLink.addEventListener('click', function() {
+              window.scrollTo(scrollToChild.offsetLeft, scrollToChild.offsetTop - tab.jumpToNavigation.offset);
+            });
+
+            var jumpLinkWrapper = document.createElement('span');
+            jumpLinkWrapper.appendChild(jumpLink)
+            buttonGroup.appendChild(jumpLinkWrapper);
+          });
 
           jumpToNavigation.appendChild(buttonGroup);
           div.insertBefore(jumpToNavigation, div.firstChild);
