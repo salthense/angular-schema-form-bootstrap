@@ -8,5 +8,6 @@
       <div ng-click="editRecord(record)" ng-include="'types/' + recordTitle + '/recordRepresentation.html'"
         class="{{form.innerClass}}">
       </div>
+      <div ng-if="relations !== undefined && linkedSchemaTitle !== undefined" ng-include="'types/' + linkedSchemaTitle + '/relationList.html'"> </div>
     </div>
 </div>
