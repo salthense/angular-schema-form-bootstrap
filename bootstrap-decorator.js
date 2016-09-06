@@ -52,6 +52,10 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
         div.setAttribute('ng-show', 'selected.tab === ' + index);
         div.setAttribute('ng-class', '{active: selected.tab === ' + index + '}');
 
+        var tabContentWrap = document.createElement('div');
+        tabContentWrap.className = 'tab-content-wrap';
+        div.appendChild(tabContentWrap);
+
         var childFrag = args.build(tab.items, args.path + '.tabs[' + index + '].items', args.state);
 
         if (tab.jumpToNavigation) {
@@ -137,7 +141,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
           }
         }
 
-        div.appendChild(childFrag);
+        tabContentWrap.appendChild(childFrag);
         tabContent.appendChild(div);
       });
     }
