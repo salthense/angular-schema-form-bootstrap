@@ -14,6 +14,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var typeahead           = sfBuilderProvider.builders.typeahead;
   var link                = sfBuilderProvider.builders.link;
   var measurement         = sfBuilderProvider.builders.measurement;
+  var measurementValue    = sfBuilderProvider.builders.measurementValue;
   var addon               = sfBuilderProvider.builders.addon;
 
   // Tabs is so bootstrap specific that it stays here.
@@ -149,7 +150,8 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     checkbox: {template: base + 'checkbox.html', builder: defaults},
     checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     number: {template: base + 'default.html', builder: defaults},
-    measurement: {template: base + 'measurement.html', builder: [sfField, ngModel, ngModelOptions, condition, attributes, typeahead, addon, measurement]},
+    measurement: {template: base + 'measurement.html', builder: [sfField, ngModel, ngModelOptions, condition, array, measurement]},
+    measurementValue: {template: base + 'measurementValue.html', builder: defaults},
     password: {template: base + 'default.html', builder: defaults},
     submit: {template: base + 'submit.html', builder: defaults},
     button: {template: base + 'submit.html', builder: defaults},
