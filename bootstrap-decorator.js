@@ -104,9 +104,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             var jumpLink = document.createElement('button');
             jumpLink.setAttribute('type', 'button');
             if (item.title && item.title.substr(0, 1) != '<') {
-              var classes = 'btn btn-info btn-jump-to panel-' +
-                $('.list-group-item-info .active')[0].innerHTML.trim().toLowerCase().replace(/\W+/g, '-') +
-                '-' + item.title.toLowerCase().replace(/\W+/g, '-');
+              var classes = 'btn btn-info btn-jump-to jump-to-' + item.title.toLowerCase().replace(/\W+/g, '-');
               if (index == 0 && count == 0) {
                 classes = 'active ' +  classes;
               }
@@ -198,6 +196,7 @@ function elementInViewport(element) {
   var rect = element.getBoundingClientRect();
   return (rect.top > 0 && rect.top < window.innerHeight);
 }
+
 function markActiveTab() {
   var found = false;
   $('.panel-section').each(function(pan) {
