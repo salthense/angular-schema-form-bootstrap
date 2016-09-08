@@ -38,7 +38,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
         if (tab.jumpToNavigation) {
           $(tabContent).addClass('contains-jump-to-navigation');
           var jumpToNavigation = document.createElement('div');
-          jumpToNavigation.className = 'btn-group-wrap';
+          jumpToNavigation.className = 'btn-group-wrap jump-to-wrap';
           var buttonGroup = document.createElement('div');
           buttonGroup.setAttribute('class', 'btn-group affix-btn-group');
 
@@ -170,32 +170,29 @@ app.filter('alphaNumeric', function() {
   }
 });
 
-function elementInViewport(element) {
+function elementInViewport(element, offset) {
   var rect = element.getBoundingClientRect();
-  return (rect.top > 0 && rect.top < window.innerHeight);
+  // The offset makes it possible to recognize an element earlier. One example
+  // where this might be necessary are fixed elements at the top of a page,
+  // which make the viewport smaller.
+  var offset = offset || 0;
+
+  return (rect.bottom > 0 + offset && rect.top < window.innerHeight + offset);
 }
 
 function markActiveTab() {
-  var found = false;
-  $('.panel-section').each(function(pan) {
-    if (elementInViewport($('.panel-section')[pan]) && !found) {
-      $('.btn-jump-to.active').removeClass('active');
-      var classes = $('.panel-section')[pan].getAttribute('class').split(' ');
-      classes.forEach(function(cl) {
-        if (cl.indexOf('panel-' + $('.list-group-item-info .active')[0].innerHTML.trim().toLowerCase()) >= 0) {
-          $('button.' + cl).addClass('active');
-          found = true;
-        }
-      });
+  $('.btn-jump-to:focus').blur();
+  $('.btn-jump-to.active').removeClass('active');
+
+  $('.tab-pane.active .panel-section').each(function(pan) {
+    if (elementInViewport($('.panel-section')[pan], 150)) {
+      $('span:nth-child(' + (3 + pan) + ') .btn-jump-to').addClass('active');
+      return false;
     }
   });
 }
-window.addEventListener('scroll', function() {
-  markActiveTab();
-});
-window.addEventListener('click', function() {
-  markActiveTab();
-});
+window.addEventListener('scroll', markActiveTab);
+window.addEventListener('click', markActiveTab);
 
 app.filter('range', function() {
   return function (input, total) {
