@@ -12,6 +12,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var array               = sfBuilderProvider.builders.array;
   var attributes          = sfBuilderProvider.builders.attributes;
   var typeahead           = sfBuilderProvider.builders.typeahead;
+  var userTypeahead       = sfBuilderProvider.builders.userTypeahead;
   var link                = sfBuilderProvider.builders.link;
   var measurement         = sfBuilderProvider.builders.measurement;
   var measurementValue    = sfBuilderProvider.builders.measurementValue;
@@ -130,7 +131,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     contentElement.appendChild(children);
   };
 
-  var defaults = [sfField, ngModel, ngModelOptions, condition, attributes, typeahead, addon];
+  var defaults = [sfField, ngModel, ngModelOptions, condition, attributes, typeahead, userTypeahead, addon];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
     textarea: {template: base + 'textarea.html', builder: defaults},
     fieldset: {template: base + 'fieldset.html', builder: [sfField, complexTransclusion, condition]},
