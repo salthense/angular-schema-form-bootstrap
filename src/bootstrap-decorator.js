@@ -69,7 +69,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
           bottomLink.appendChild(bottomSpan);
 
           bottomLink.addEventListener('click', function() {
-            window.scrollTo(0, document.body.offsetHeight);
+            window.scrollTo(0, $(bottomLink).parents('form')[0].getBoundingClientRect().bottom);
           });
 
           var bottomLinkWrapper = document.createElement('span');
@@ -92,7 +92,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             jumpLink.textContent = item.title;
 
             jumpLink.addEventListener('click', function() {
-              window.scrollTo(scrollToChild.offsetLeft, scrollToChild.offsetTop - tab.jumpToNavigation.offset);
+              window.scrollTo($(scrollToChild).offset().left, $(scrollToChild).offset().top - tab.jumpToNavigation.offset);
             });
 
             var jumpLinkWrapper = document.createElement('span');
