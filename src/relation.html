@@ -5,7 +5,7 @@
     <label class="control-label" ng-show="showTitle()">{{ form.title }}</label>
     <div ng-if="records.length === 0 || records === undefined"> Keine Verknüpfungen gefunden </div>
     <div ng-if="records.length > 0" class="{{form.htmlClass}}" ng-repeat="record in records">
-      <div ng-click="editRecord(record)" ng-include="'types/' + recordTitle + '/recordRepresentation.html'"
+      <div ng-click="editRecord(record)" ng-include="'types/' + recordTitle + '/recordRepresentationRelation.html'"
         class="{{form.innerClass}}">
       </div>
       <div ng-if="relations !== undefined && linkedSchemaTitle !== undefined" ng-include="'types/' + linkedSchemaTitle + '/relationList.html'"> </div>
