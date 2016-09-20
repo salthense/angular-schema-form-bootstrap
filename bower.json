@@ -28,6 +28,7 @@
     "angular-mocks": ">= 1.2",
     "tx-tinymce": ">= 0.0.5",
     "angular-ui-sortable": ">=0.12.11",
-    "bootstrap-vertical-tabs": "~1.2.0"
+    "bootstrap-vertical-tabs": "~1.2.0",
+    "jquery-colorbox": "^1.6.4"
   }
 }
