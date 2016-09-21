@@ -1,4 +1,5 @@
 <div class="form-group {{ form.htmlClass }}">
-  <label class="control-label {{form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}">{{form.title}}</label>
-  <a colorbox class="image-lightbox" href="types/{{ schema.title }}/images/{{ form.file }}"><img src="types/{{ schema.title }}/images/thumbnail_{{ form.file }}"></a>
+  <label class="control-label" ng-class="{'sr-only': !showTitle(), '{{form.labelHtmlClass}}': true}" for="{{form.key.slice(-1)[0]}}">{{form.title}}</label>
+  <a colorbox class="image-lightbox" ng-href="types/{{ schema.title }}/images/{{ form.file }}"><img ng-src="types/{{ schema.title }}/images/thumbnail_{{ form.file }}"></a>
 </div>
+Test: {{form.labelHtmlClass}}
