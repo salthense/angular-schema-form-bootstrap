@@ -20,7 +20,7 @@ gulp.task('minify', function() {
       root: 'decorators/bootstrap/'
     }))
     );
-  stream.queue(gulp.src(['./bower_components/jquery-colorbox/jquery.colorbox.js', './src/**/*.js']));
+  stream.queue(gulp.src('./src/**/*.js'));
 
   stream.done()
   .pipe(concat('bootstrap-decorator.js'))
