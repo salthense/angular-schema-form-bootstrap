@@ -1,5 +1,6 @@
 <div class="form-group schema-form-{{form.type}} {{form.htmlClass}}"
      ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess(), 'has-feedback': form.feedback !== false}">
+  <label>{{getLabel(form.titleSchema, $index)}}</label>
 
   <input ng-show="form.key"
          type="{{form.type}}"
