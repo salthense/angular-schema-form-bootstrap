@@ -65,7 +65,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
         if (tab.jumpToNavigation) {
           $(tabContent).addClass('contains-jump-to-navigation');
           var jumpToNavigation = document.createElement('div');
-          jumpToNavigation.className = 'btn-group-wrap jump-to-wrap';
+          jumpToNavigation.className = 'btn-group-wrap jump-to-wrap hidden-xs hidden-sm';
           var buttonGroup = document.createElement('div');
           buttonGroup.setAttribute('class', 'btn-group affix-btn-group');
 
