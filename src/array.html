@@ -3,7 +3,7 @@
       sf-field-model="sf-new-array"
       sf-new-array>
   <legend class="control-label" ng-show="showTitle()">{{ form.title }}</legend>
-  <ol class="list-group" sf-field-model ui-sortable="form.sortOptions">
+  <ol class="list-group {{form.innerClass}}" sf-field-model ui-sortable="form.sortOptions">
     <li class="list-group-item {{form.fieldHtmlClass}}"
         schema-form-array-items
         sf-field-model="ng-repeat"
