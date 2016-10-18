@@ -8,7 +8,7 @@
            schema-validate="form"
            class="{{form.fieldHtmlClass}}"
            name="{{form.key.slice(-1)[0]}}">
-    <span ng-bind-html="form.title"></span>
+    <span ng-bind-html="form.title" ng-if="!form.notitle"></span>
     <span ng-if="form.feedback !== false"
           class="form-control-feedback"
           ng-class="evalInScope(form.feedback) || {'glyphicon': true, 'glyphicon-warning-sign': hasWarning() }"
