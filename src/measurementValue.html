@@ -3,13 +3,13 @@
   <label>{{getLabel(form.titleSchema, $index)}}</label>
 
   <input ng-show="form.key"
-         type="{{form.type}}"
+         type="{{form.schema.type}}"
          step="any"
          sf-changed="form"
          placeholder="{{form.placeholder}}"
          class="form-control {{form.fieldHtmlClass}} col-md-6 measurementValue"
          id="{{form.key.join('') + $index}}"
-         sf-field-model
+         ng-model="item[form.key.slice(-1, 0)[0]]"
          ng-disabled="form.readonly"
          schema-validate="form"
          name="{{form.key.join('') + $index}}"
