@@ -9,7 +9,7 @@
          placeholder="{{form.placeholder}}"
          class="form-control {{form.fieldHtmlClass}} col-md-6 measurementValue"
          id="{{form.key.join('') + $index}}"
-         ng-model="item[form.key.slice(-1, 0)[0]]"
+         ng-model="item[form.key.slice(-1)[0]]"
          ng-disabled="form.readonly"
          schema-validate="form"
          name="{{form.key.join('') + $index}}"
