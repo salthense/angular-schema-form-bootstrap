@@ -6,11 +6,11 @@
     class="btn btn-default"
     type="button"
     data-toggle="modal"
-    data-target="#measurementModal{{form.key.slice(-1)[0]}}">
+    data-target="#measurementModal{{form.key.join('')}}">
       {{::form.i18n.insertDataBtn || 'insert data'}}
   </button>
 
-  <div id="measurementModal{{form.key.slice(-1)[0]}}" class="modal fade" tabindex="-1" measurements>
+  <div id="measurementModal{{form.key.join('')}}" class="modal fade" tabindex="-1" measurements>
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -19,7 +19,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div id="measurementContainer{{form.key.slice(-1)[0]}}">
+            <div id="measurementContainer{{form.key.join('')}}">
               <ol class="list-group" sf-field-model ui-sortable="form.sortOptions">
                 <li class="list-group-item measurement {{form.fieldHtmlClass}}"
                     schema-form-array-items
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button id="resetBtn{{form.key.slice(-1)[0]}}" class="btn btn-default" type="button" ng-click="reset(form)">{{::form.i18n.resetDataBtn || 'reset'}}</button>
+          <button id="resetBtn{{form.key.join('')}}" class="btn btn-default" type="button" ng-click="reset(form)">{{::form.i18n.resetDataBtn || 'reset'}}</button>
           <button class="btn btn-default" data-dismiss="modal">Schließen</button>
         </div>
       </div>
