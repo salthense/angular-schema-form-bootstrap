@@ -2,7 +2,8 @@
       ng-class="{{form.ngClass}}"
       sf-field-model="sf-relation"
       sf-relation>
-    <label class="control-label" ng-show="showTitle()">{{ form.title }}</label>
+    <label class="control-label" ng-show="showTitle()" data-trigger="hover"
+      placement="auto right" data-content="{{form.popover}}">{{ form.title }}</label>
     <div ng-if="records.length === 0 || records === undefined"> Keine Verknüpfungen gefunden </div>
     <div ng-if="records.length > 0" class="{{form.htmlClass}}" ng-repeat="record in records">
       <div ng-click="editRecord(record)" ng-include="'types/' + recordTitle + '/recordRepresentationRelation.html'"
