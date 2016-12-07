@@ -2,7 +2,8 @@
       ng-class="{{form.ngClass}}"
       sf-field-model="sf-matrix"
       sf-matrix>
-  <label class="control-label" ng-show="showTitle()">{{ form.title }}</label>
+  <label class="control-label" ng-show="showTitle()" data-trigger="hover"
+    placement="auto right" data-content="{{form.popover}}">{{ form.title }}</label>
   <table class="table">
     <thead>
       <tr>

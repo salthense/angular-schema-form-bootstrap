@@ -1,7 +1,8 @@
 <div class="form-group schema-form-radios {{form.htmlClass}}" ng-class="{{form.ngClass}}" ng-class="{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess()}">
   <label class="control-label {{form.labelHtmlClass}}"
          sf-field-model schema-validate="form"
-         ng-show="showTitle()">{{form.title}}</label>
+         ng-show="showTitle()" data-trigger="hover" placement="auto right"
+         data-content="{{form.popover}}">{{form.title}}</label>
   <div class="radio" ng-repeat="item in form.titleMap">
     <label>
       <input type="radio"
