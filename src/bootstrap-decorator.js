@@ -90,6 +90,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
             } else {
               jumpLink.setAttribute('class', 'btn btn-info btn-jump-to');
             }
+            jumpLink.setAttribute('title', item.title);
             jumpLink.textContent = item.title;
 
             jumpLink.addEventListener('click', function() {
