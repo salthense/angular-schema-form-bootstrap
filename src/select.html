@@ -4,6 +4,7 @@
   <label class="control-label {{form.labelHtmlClass}}" ng-show="showTitle()"
     data-trigger="hover" placement="auto right" data-content="{{form.popover}}">
     {{form.title}}
+    <span class="glyphicon glyphicon-info-sign" ng-show="{{form.popover}}"></span>
   </label>
   <select sf-field-model
           ng-disabled="form.readonly"

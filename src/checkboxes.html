@@ -9,6 +9,7 @@
 
   <div class="checkbox" ng-repeat="val in titleMapValues track by $index" >
     <label>
+      <span class="glyphicon glyphicon-info-sign" ng-show="{{form.popover}}"></span>
       <input type="checkbox"
              ng-disabled="form.readonly"
              sf-changed="form"

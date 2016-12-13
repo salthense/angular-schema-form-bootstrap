@@ -1,6 +1,8 @@
 <div class="form-group has-feedback {{form.htmlClass}} schema-form-textarea" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}">
   <label class="control-label {{form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}"
-    data-trigger="hover" placement="auto right" data-content="{{form.popover}}">{{form.title}}</label>
+    data-trigger="hover" placement="auto right" data-content="{{form.popover}}">{{form.title}}
+    <span class="glyphicon glyphicon-info-sign" ng-show="{{form.popover}}"></span>
+  </label>
 
   <textarea class="form-control {{form.fieldHtmlClass}}"
             id="{{form.key.slice(-1)[0]}}"
