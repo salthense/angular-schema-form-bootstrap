@@ -4,7 +4,7 @@
       sf-link>
     <label class="control-label {{form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}"
       data-trigger="hover" placement="auto right" data-content="{{form.popover}}">{{form.title}}
-      <span class="glyphicon glyphicon-info-sign" ng-show="{{form.popover}}"></span>
+      <span class="glyphicon glyphicon-info-sign" ng-show="form.popover"></span>
     </label>
     <input class="form-control" ng-disabled="form.readonly" ng-model="inputValue" ng-change="change()" typeahead-on-select='setLink($item, $model, $label, $event, $index)'>
     <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-remove': !isValueSet, 'glyphicon-ok': isValueSet}"></span>

@@ -1,7 +1,7 @@
 <div class="checkbox schema-form-checkbox {{form.htmlClass}}"
      ng-class="{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}">
   <label class="{{form.labelHtmlClass}}" data-trigger="hover" placement="auto right" data-content="{{form.popover}}">
-    <span class="glyphicon glyphicon-info-sign" ng-show="{{form.popover}}"></span>
+    <span class="glyphicon glyphicon-info-sign" ng-show="form.popover"></span>
     <input type="checkbox"
            sf-changed="form"
            ng-disabled="form.readonly"

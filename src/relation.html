@@ -4,7 +4,7 @@
       sf-relation>
     <label class="control-label" ng-show="showTitle()" data-trigger="hover"
       placement="auto right" data-content="{{form.popover}}">{{ form.title }}
-      <span class="glyphicon glyphicon-info-sign" ng-show="{{form.popover}}"></span>
+      <span class="glyphicon glyphicon-info-sign" ng-show="form.popover"></span>
     </label>
     <div ng-if="records.length === 0 || records === undefined"> Keine Verknüpfungen gefunden </div>
     <div ng-if="records.length > 0" class="{{form.htmlClass}}" ng-repeat="record in records">
