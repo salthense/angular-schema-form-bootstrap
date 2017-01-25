@@ -2,7 +2,7 @@
      ng-class="{{form.ngClass}}"
      ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess(), 'has-feedback': form.feedback !== false}">
   <label class="control-label {{form.labelHtmlClass}}" ng-show="showTitle()"
-    data-trigger="hover" placement="auto right" data-content="{{form.popover}}">
+    data-trigger="hover" placement="auto right" data-content="{{form.popover}}" data-html="true" data-container="body">
     {{form.title}}
     <span class="glyphicon glyphicon-info-sign" ng-show="form.popover"></span>
   </label>

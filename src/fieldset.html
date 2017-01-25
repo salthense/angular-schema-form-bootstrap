@@ -1,5 +1,5 @@
 <div class="{{form.outerClass}}">
-  <legend ng-class="{'sr-only': !showTitle() }" data-trigger="hover" placement="auto right" data-content="{{form.popover}}">{{ form.title }}
+  <legend ng-class="{'sr-only': !showTitle() }" data-trigger="hover" placement="auto right" data-content="{{form.popover}}" data-html="true" data-container="body">{{ form.title }}
     <span class="glyphicon glyphicon-info-sign" ng-show="form.popover"></span>
   </legend>
   <fieldset ng-disabled="form.readonly" class="sf-content schema-form-fieldset {{form.htmlClass}}" ng-class="{{form.ngClass}}">

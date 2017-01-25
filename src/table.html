@@ -1,0 +1,17 @@
+<div>
+  <div class="help-block" ng-show="form.description" ng-bind-html="form.description"></div>
+  <table 
+    class="table schema-form-table {{form.htmlClass}}"
+    ng-class="{{form.ngClass}}">
+    <caption ng-show="showTitle()">
+      {{ form.title }}
+    </caption>
+    <thead>
+      <tr>
+        <th ng-repeat="header in form.headers">{{ header }}</th>
+      </tr>
+    </thead>
+    <tbody class="table-content">
+    </tbody>
+  </table>
+</div>

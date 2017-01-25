@@ -124,7 +124,31 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     }
   };
 
-  // Tabs is so bootstrap specific that it stays here.
+  var table = function(args) {
+    if (args.form.rows && args.form.rows.length > 0) {
+      var tableContent = args.fieldFrag.querySelector('.table-content');
+
+      args.form.rows.forEach(function(row) {
+        var rowHtml = document.createElement('tr');
+
+        row.cols.forEach(function(col) {
+          var childFrag = args.build([col], args.path + '.items', args.state);
+          var colHtml = document.createElement('td');
+
+          if (col.colspan) {
+            colHtml.setAttribute('colspan', col.colspan);
+          }
+
+          colHtml.appendChild(childFrag);
+
+          rowHtml.appendChild(colHtml);
+        });
+
+        tableContent.appendChild(rowHtml);
+      });
+    }
+  };
+
   var complexTransclusion = function(args) {
     var children = args.build(args.form.items, args.path + '.items', args.state);
     var contentElement =
@@ -140,6 +164,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     matrix: {template: base + 'matrix.html', builder: [sfField, ngModelOptions, ngModel, condition]},
     relation: {template: base + 'relation.html', builder: [sfField, ngModelOptions, ngModel, condition]},
+    label: {template: base + 'label.html', builder: defaults},
     link: {template: base + 'link.html', builder: [sfField, ngModelOptions, ngModel, condition, link]},
     linkRepresentation: {template: base + 'linkRepresentation.html', builder: [sfField, ngModelOptions, ngModel, condition]},
     exmodule: {template: base + 'exmodule.html', builder: [sfField, ngModelOptions, ngModel, condition]},
@@ -160,6 +185,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     radios: {template: base + 'radios.html', builder: defaults},
     'radios-inline': {template: base + 'radios-inline.html', builder: defaults},
     radiobuttons: {template: base + 'radio-buttons.html', builder: defaults},
+    table: {template: base + 'table.html', builder: [sfField, ngModel, table, condition]},
     help: {template: base + 'help.html', builder: defaults},
     image: {template: base + 'image.html', builder: defaults},
     'default': {template: base + 'default.html', builder: defaults}
