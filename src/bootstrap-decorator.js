@@ -130,6 +130,9 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
       args.form.rows.forEach(function(row) {
         var rowHtml = document.createElement('tr');
+        if (row.showCondition) {
+          rowHtml.setAttribute('ng-show', row.showCondition);
+        }
 
         row.cols.forEach(function(col) {
           var childFrag = args.build([col], args.path + '.items', args.state);
