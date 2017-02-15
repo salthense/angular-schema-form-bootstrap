@@ -1,20 +1,20 @@
-<div class="form-group schema-form-{{form.type}} {{form.htmlClass}}"
+<div class="form-group schema-form-{{::form.type}} {{::form.htmlClass}}"
      ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess(), 'has-feedback': form.feedback !== false}">
-  <label>{{getLabel(form.titleSchema, $index)}}</label>
+  <label>{{::getLabel(form.titleSchema, $index)}}</label>
 
-  <input ng-show="form.key"
-         type="{{form.schema.type}}"
+  <input ng-show="::form.key"
+         type="{{::form.schema.type}}"
          step="any"
          lang="de-DE"
          sf-changed="form"
-         placeholder="{{form.placeholder}}"
-         class="form-control {{form.fieldHtmlClass}} col-md-6 measurementValue"
-         id="{{form.key.join('') + $index}}"
+         placeholder="{{::form.placeholder}}"
+         class="form-control {{::form.fieldHtmlClass}} col-md-6 measurementValue"
+         id="{{::form.key.join('') + $index}}"
          ng-model="item[form.key.slice(-1)[0]]"
-         ng-disabled="form.readonly"
+         ng-disabled="::form.readonly"
          schema-validate="form"
-         name="{{form.key.join('') + $index}}"
-         aria-describedby="{{form.key.join('') + $index + 'Status'}}">
+         name="{{::form.key.join('') + $index}}"
+         aria-describedby="{{::form.key.join('') + $index + 'Status'}}">
 
   <span ng-if="form.feedback !== false"
         class="form-control-feedback"
@@ -22,8 +22,8 @@
         aria-hidden="true"></span>
 
   <span ng-if="hasError() || hasSuccess()"
-        id="{{form.key.join('') + $index + 'Status'}}"
+        id="{{::form.key.join('') + $index + 'Status'}}"
         class="sr-only">{{ hasSuccess() ? '(success)' : '(error)' }}</span>
 
-  <div class="help-block" sf-message="form.description"></div>
+  <div class="help-block" sf-message="::form.description"></div>
 </div>

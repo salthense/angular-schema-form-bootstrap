@@ -1,17 +1,17 @@
-<div class="form-group has-feedback {{form.htmlClass}} schema-form-textarea" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}">
-  <label class="control-label {{form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}"
-    data-trigger="hover" placement="auto right" data-content="{{form.popover}}" data-html="true" data-container="body">{{form.title}}
-    <span class="glyphicon glyphicon-info-sign" ng-show="form.popover"></span>
+<div class="form-group has-feedback {{::form.htmlClass}} schema-form-textarea" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}">
+  <label class="control-label {{::form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{::form.key.slice(-1)[0]}}"
+    data-trigger="hover" placement="auto right" data-content="{{::form.popover}}" data-html="true" data-container="body">{{::form.title}}
+    <span class="glyphicon glyphicon-info-sign" ng-show="::form.popover"></span>
   </label>
 
-  <textarea class="form-control {{form.fieldHtmlClass}}"
-            id="{{form.key.slice(-1)[0]}}"
+  <textarea class="form-control {{::form.fieldHtmlClass}}"
+            id="{{::form.key.slice(-1)[0]}}"
             sf-changed="form"
-            placeholder="{{form.placeholder}}"
-            ng-disabled="form.readonly"
+            placeholder="{{::form.placeholder}}"
+            ng-disabled="::form.readonly"
             sf-field-model
             schema-validate="form"
-            name="{{form.key.slice(-1)[0]}}"></textarea>
+            name="{{::form.key.slice(-1)[0]}}"></textarea>
 
-  <span class="help-block" sf-message="form.description"></span>
+  <span class="help-block" sf-message="::form.description"></span>
 </div>

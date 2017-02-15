@@ -1,8 +1,8 @@
-<div ng-disabled="form.readonly" class="block-{{form.title}} panel schema-form-fieldset {{form.htmlClass}} panel-section" ng-class="{{form.ngClass}}">
+<div ng-disabled="::form.readonly" class="block-{{::form.title}} panel schema-form-fieldset {{::form.htmlClass}} panel-section" ng-class="{{::form.ngClass}}">
   <div class="panel-heading" ng-class="{'sr-only': !showTitle() }">
-    {{ form.title }}
+    {{::form.title}}
   </div>
-  <div class="help-block" ng-show="form.description" ng-bind-html="form.description"></div>
+  <div class="help-block" ng-show="::form.description" ng-bind-html="::form.description"></div>
   <div class="sf-content panel-body">
   </div>
 </div>

@@ -1,10 +1,10 @@
-<div  class="schema-form-matrix {{form.htmlClass}}"
-      ng-class="{{form.ngClass}}"
+<div  class="schema-form-matrix {{::form.htmlClass}}"
+      ng-class="{{::form.ngClass}}"
       sf-field-model="sf-matrix"
       sf-matrix>
-  <label class="control-label" ng-show="showTitle()" data-trigger="hover"
-    placement="auto right" data-content="{{form.popover}}" data-html="true" data-container="body">{{ form.title }}
-    <span class="glyphicon glyphicon-info-sign" ng-show="form.popover"></span>
+  <label class="control-label" ng-show="::showTitle()" data-trigger="hover"
+    placement="auto right" data-content="{{::form.popover}}" data-html="true" data-container="body">{{::form.title}}
+    <span class="glyphicon glyphicon-info-sign" ng-show="::form.popover"></span>
   </label>
   <table class="table">
     <thead>
@@ -18,20 +18,20 @@
     <tbody>
       <tr ng-repeat="row in matrixRows track by $index"
         ng-class="rowClass($index)"
-        class="matrix-row-{{row | alphaNumeric}}">
+        class="matrix-row-{{::row | alphaNumeric}}">
         <td colspan="{{1 + matrixColumns.length}}" ng-show="!activeGroups[getGroupForRow($index).group - 1] && isFirstInGroup($index)">
           <button type="button" name="button" ng-click="activeGroups[getGroupForRow($index).group - 1] = true">
             <span class="glyphicon glyphicon-plus"></span>
           </button>
         </td>
-        <td ng-show="activeGroups[getGroupForRow($index).group - 1]">{{row}}</td>
-        <td ng-show="activeGroups[getGroupForRow($parent.$index).group - 1]"
+        <td ng-show="::activeGroups[getGroupForRow($index).group - 1]">{{::row}}</td>
+        <td ng-show="::activeGroups[getGroupForRow($parent.$index).group - 1]"
           ng-repeat="column in matrixColumns">
           <input type="checkbox"
-            ng-disabled="form.readonly"
+            ng-disabled="::form.readonly"
             ng-model="matrixElements[matrixMap[row][column]].selected"
             ng-change="setGroupState($parent.$index, matrixElements[matrixMap[row][column]].selected)"
-            class="{{form.fieldHtmlClass}}">
+            class="{{::form.fieldHtmlClass}}">
         </td>
       </tr>
     </tbody>

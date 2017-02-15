@@ -1,14 +1,14 @@
-<div ng-init="selected = { tab: 0 }" class="schema-form-tabs {{form.htmlClass}}" ng-class="{{form.ngClass}}">
+<div ng-init="selected = { tab: 0 }" class="schema-form-tabs {{::form.htmlClass}}" ng-class="{{::form.ngClass}}">
   <ul class="nav nav-tabs">
     <li ng-repeat="tab in form.tabs"
-        ng-disabled="form.readonly"
+        ng-disabled="::form.readonly"
         ng-click="$event.preventDefault() || (selected.tab = $index)"
-        class="panel-{{schema.title.toLowerCase()}}-{{tab.title.toLowerCase()}}"
+        class="panel-{{::schema.title.toLowerCase()}}-{{::tab.title.toLowerCase()}}"
         ng-class="{active: selected.tab === $index}">
         <a href="#">{{ tab.title }}</a>
     </li>
   </ul>
 
-  <div class="tab-content {{form.fieldHtmlClass}}">
+  <div class="tab-content {{::form.fieldHtmlClass}}">
   </div>
 </div>
