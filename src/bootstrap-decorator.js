@@ -190,7 +190,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     checkbox: {template: base + 'checkbox.html', builder: defaults},
     checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     number: {template: base + 'default.html', builder: defaults},
-    measurement: {template: base + 'measurement.html', builder: [sfField, ngModel, ngModelOptions, condition, array, measurement]},
+    measurement: {template: base + 'measurement.html', builder: [sfField, ngModelOptions, ngModel, condition, array, measurement]},
     measurementValue: {template: base + 'measurementValue.html', builder: defaults},
     password: {template: base + 'default.html', builder: defaults},
     submit: {template: base + 'submit.html', builder: defaults},
