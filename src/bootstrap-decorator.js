@@ -159,6 +159,16 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     contentElement.appendChild(children);
   };
 
+  var relationBuilder = function(args) {
+    if (!args.form.template) {
+      args.form.template = "recordRepresentationRelation.html";
+    }
+
+    if (args.form.showRelationList === undefined) {
+      args.form.showRelationList = true;
+    }
+  };
+
   var defaults = [sfField, ngModel, ngModelOptions, condition, attributes, typeahead, userTypeahead, addon];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
     textarea: {template: base + 'textarea.html', builder: defaults},
@@ -166,7 +176,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     panel: {template: base + 'panel.html', builder: [sfField, complexTransclusion, condition]},
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     matrix: {template: base + 'matrix.html', builder: [sfField, ngModelOptions, ngModel, condition]},
-    relation: {template: base + 'relation.html', builder: [sfField, ngModelOptions, ngModel, condition]},
+    relation: {template: base + 'relation.html', builder: [sfField, ngModelOptions, ngModel, condition, relationBuilder]},
     label: {template: base + 'label.html', builder: defaults},
     link: {template: base + 'link.html', builder: [sfField, ngModelOptions, ngModel, condition, link]},
     linkRepresentation: {template: base + 'linkRepresentation.html', builder: [sfField, ngModelOptions, ngModel, condition]},
