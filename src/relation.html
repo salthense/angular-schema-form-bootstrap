@@ -1,4 +1,5 @@
 <div  class="schema-form-relation {{::form.outerClass}}"
+      relations: {{record}}
       ng-class="{{::form.ngClass}}"
       sf-field-model="sf-relation"
       sf-relation>
@@ -6,15 +7,5 @@
       placement="auto right" data-content="{{::form.popover}}" data-html="true" data-container="body">{{::form.title}}
       <span class="glyphicon glyphicon-info-sign" ng-show="::form.popover"></span>
     </label>
-    <div ng-if="records.length === 0 || records === undefined"> Keine Verknüpfungen gefunden </div>
-    <div ng-if="records.length > 0" class="{{::form.htmlClass}}" ng-repeat="record in records">
-      <div ng-click="editRecord(record)" ng-include="'types/' + recordTitle + '/views/' + form.template"
-        class="{{::form.innerClass}}">
-      </div>
-      <div
-        ng-if="relations !== undefined && linkedSchemaTitle !== undefined && form.showRelationList"
-        ng-include="'types/' + linkedSchemaTitle + '/relationList.html'"
-      >
-      </div>
-    </div>
+    <div ng-if="linkedSchemaTitle" ng-include="'types/' + linkedSchemaTitle + '/views/' + form.template"></div>
 </div>
